@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="面向机器人软件、ROS 与仿真岗位的项目作品集：移动操作、抓取感知、视觉导航、主动视角规划与作物物理仿真">
+  <meta name="theme-color" content="#7f00ff">
+  <meta property="og:title" content="Robotics Simulation & Autonomy Portfolio">
+  <meta property="og:description" content="ROS / ROS2 · Gazebo · Isaac Sim · MoveIt · PBD · Perception · Planning · Control">
+  <meta property="og:image" content="assets/images/mobile-manipulator-demo-first-frame.jpg">
+  <title> Robotics Simulation &amp; Autonomy Portfolio</title>
+  <link rel="icon" href="assets/icons/robot-favicon-v2.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20260916-2">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+  
+
+  <main id="main">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="hero-grid container">
+        <div class="hero-copy reveal">
+          <h1 id="hero-title">Robotics <span>Systems & Simulation</span></h1>
+          <p class="hero-cn">机器人系统与仿真项目作品集</p>
+          <div class="tags hero-tags" aria-label="核心技术栈">
+            <span>ROS / ROS2</span><span>Gazebo</span><span>Isaac Sim</span><span>MoveIt</span><span>Blender</span><span>PBD</span><span>Python</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <nav class="project-index container" aria-label="六个独立项目">
+      <a href="#project-mobile"><span>01 · GAZEBO</span><strong>移动操作机器人系统集成</strong></a>
+      <a href="#project-anygrasp"><span>02 · GAZEBO</span><strong>杂乱场景6D位姿估计算法封装</strong></a>
+      <a href="#project-vision"><span>03 · GAZEBO</span><strong>农业机器人 RGB-D 视觉导航</strong></a>
+      <a href="#project-gnbv"><span>04 · ISAAC SIM</span><strong>主动视觉平台迁移与服务化</strong></a>
+      <a href="#project-tomato"><span>05 · ISAAC SIM</span><strong>番茄植株枝叶关节化与风场仿真</strong></a>
+      <a href="#project-cloth-pbd"><span>06 · ISAAC SIM</span><strong>PBD 粒子布料叶片仿真</strong></a>
+    </nav>
+
+    <section class="section project-module" id="project-mobile" aria-label="ROS2 移动操作机器人系统集成与仿真开发">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">01 / MOBILE MANIPULATION</p>
+          <p class="module-cn">ROS2 移动操作机器人系统集成与仿真开发</p>
+          <p class="module-summary">基于开源 <a class="source-link" href="https://github.com/blackcoffeerobotics/bcr_bot" target="_blank" rel="noopener noreferrer">BCR_Bot</a> 移动底盘进行二次开发，将原 Gazebo 差速驱动插件<strong>替换为 ros2_control + diff_drive_controller 标准控制链路</strong>，并完成<strong>移动操作机器人整机集成</strong>、<strong>SLAM / Nav2 目标点导航</strong>以及<strong>视觉感知、GPD 抓取位姿检测与抓放任务联调</strong></p>
+          <div class="tags module-tags" aria-label="移动操作机器人系统集成技术栈"><span>ROS2</span><span>Robotiq</span><span>MoveIt2</span><span>UR5</span><span>Gazebo</span><span>ros2_control</span><span>Nav2</span><span>SLAM Toolbox</span><span>GPD 抓取位姿检测</span><span>YOLO11 / FastSAM</span></div>
+        </header>
+        <div class="module-body">
+          <figure class="module-demo" id="featured-demo">
+            <div class="video-frame" style="--video-ratio:1231/720">
+              <video id="hero-video" aria-label="移动操作机器人仿真 Demo" controls muted autoplay loop playsinline preload="metadata" poster="assets/images/mobile-manipulator-demo-first-frame.jpg" data-autoplay-in-view>
+                <source src="assets/videos/mobile-manipulator-demo.mp4" type="video/mp4">您的浏览器不支持 HTML5 视频
+              </video>
+              <button type="button" class="video-load" aria-label="播放移动操作机器人系统集成 Demo">▶ Watch Demo</button>
+            </div>
+          </figure>
+          <div class="module-contributions">
+            <h3>My Work</h3>
+            <ul><li><strong>重构底盘控制架构：</strong>将 BCR_Bot 原有 Gazebo 差速驱动插件重构为基于 ros2_control 与 diff_drive_controller 的标准控制架构，实现底盘控制接口模块化</li><li><strong>完成整机模型集成：</strong>基于 Xacro 完成 BCR Bot、UR5、Robotiq 夹爪及传感器模型的模块化集成，并搭建 Gazebo 移动操作机器人仿真系统</li><li><strong>打通预设目标点导航链路：</strong>使用 SLAM Toolbox 完成建图与地图保存，在地图坐标系中预先标定桌旁、床边与卫生间等目标位姿，并向 Nav2 的 NavigateToPose 接口发送导航目标，完成定位、全局/局部路径规划与点到点自主导航验证</li><li><strong>集成感知与抓取位姿检测：</strong>使用 YOLO11 与 FastSAM 生成目标实例掩膜，融合深度数据构建对象级点云，并接入 GPD 生成抓取候选位姿</li><li><strong>实现机械臂抓取与放置：</strong>完成 Robotiq 夹爪开合控制，基于 MoveIt2 采用关节空间预定位与笛卡尔接近、提升相结合的混合运动规划，实现完整 Pick-and-Place 流程</li></ul>
+          </div>
+        </div>
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>Xacro 集成底盘和机械臂</li><li>SLAM Toolbox 建图</li><li>预设目标位姿 → Nav2</li></ol><ol class="project-flow"><li>实例分割 → 对象级点云</li><li>GPD 抓取位姿检测</li><li>MoveIt2 混合规划 → 抓放</li></ol></div>
+      </div>
+    </section>
+
+    <section class="section project-module" id="project-anygrasp" aria-label="AnyGrasp 6-DoF 抓取位姿检测的 ROS2 服务化与仿真验证">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">02 / GRASP PERCEPTION</p>
+          <p class="module-cn">AnyGrasp 6-DoF 抓取位姿检测的 ROS2 服务化与仿真验证</p>
+          <p class="module-summary">将原 <a class="source-link" href="https://github.com/graspnet/anygrasp_sdk" target="_blank" rel="noopener noreferrer">AnyGrasp SDK</a> 封装为<strong>ROS2 抓取姿态检测与跟踪服务</strong>，面向 Gazebo + UR5 + L515 场景完成<strong>仿真场景搭建、RGB-D 点云处理</strong>、<strong>6-DoF 抓取候选生成与坐标变换</strong>以及上层任务接口联调</p>
+          <div class="tags module-tags" aria-label="抓取感知服务开发技术栈"><span>ROS2 / rclpy</span><span>Gazebo</span><span>AnyGrasp</span><span>RGB-D</span><span>message_filters</span><span>cv_bridge / TF2</span></div>
+        </header>
+        <div class="module-body">
+          <figure class="module-demo">
+            <div class="lazy-video" style="--video-ratio:41/24">
+              <video aria-label="AnyGrasp 抓取感知服务 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/anygrasp-demo-first-frame.jpg" data-src="assets/videos/anygrasp-demo.mp4" data-autoplay-in-view>
+                您的浏览器不支持 HTML5 视频
+              </video>
+              <button type="button" class="video-load" aria-label="加载并播放抓取感知服务开发 Demo">▶ Watch Demo</button>
+            </div>
+          </figure>
+          <div class="module-contributions">
+            <h3>My Work</h3>
+            <ul><li><strong>完成算法服务化封装：</strong>将 AnyGrasp SDK 封装为 ROS2 抓取检测与跟踪节点，并设计 GetGrasps.srv 自定义服务接口，向上层任务返回 Pose[]、Scores 与执行状态</li><li><strong>构建 RGB-D 处理链路：</strong>基于 message_filters 与 cv_bridge 实现数据同步、图像转换、点云重建及抓取候选解析</li><li><strong>打通抓取坐标变换：</strong>使用 TF2 将候选位姿从相机坐标系转换至机器人目标坐标系，并在 UR5 + L515 Gazebo 场景中完成服务联调验证</li></ul>
+          </div>
+        </div>
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow flow-two"><li>RGB-D → 点云重建</li><li>AnyGrasp 抓取推理</li></ol><ol class="project-flow flow-two"><li>GetGrasps.srv 自定义服务</li><li>TF2 → Pose[] / Scores 响应</li></ol></div>
+      </div>
+    </section>
+
+    <section class="section project-module" id="project-vision" aria-label="ROS1 VMCR 视觉导航的 ROS2 迁移与农业机器人仿真开发">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">03 / VISION NAVIGATION</p>
+          <p class="module-cn">ROS1 VMCR 视觉导航的 ROS2 迁移与农业机器人仿真开发</p>
+          <p class="module-summary"><strong>独立从零构建农业机器人仿真模型与控制系统</strong>，完成 SolidWorks Link / Joint 配置、URDF / Xacro 工程化及 ros2_control 四轮差速驱动集成，并将开源 ROS1 <a class="source-link" href="https://github.com/Agricultural-Robotics-Bonn/visual-multi-crop-row-navigation" target="_blank" rel="noopener noreferrer">VMCR</a> 迁移至 ROS2，在自主搭建的 Gazebo 农田场景中完成基于 RGB-D 的无激光行间导航闭环验证</p>
+          <div class="tags module-tags" aria-label="农业机器人 RGB-D 视觉导航技术栈"><span>ROS1 → ROS2</span><span>Gazebo</span><span>SolidWorks</span><span>URDF / Xacro</span><span>RGB-D</span><span>ros2_control</span><span>diff_drive_controller</span></div>
+        </header>
+        <div class="module-body">
+          <figure class="module-demo">
+            <div class="lazy-video" style="--video-ratio:1157/720">
+              <video aria-label="Gazebo 农田场景中的 RGB-D 视觉导航 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/vision-navigation-demo-first-frame.jpg" data-src="assets/videos/vision-navigation-demo.mp4" data-autoplay-in-view>
+                您的浏览器不支持 HTML5 视频
+              </video>
+              <button type="button" class="video-load" aria-label="加载并播放农业机器人 RGB-D 视觉导航 Demo">▶ Watch Demo</button>
+            </div>
+          </figure>
+          <div class="image-gallery vmcr-gallery" aria-label="VMCR 项目图片">
+            <button class="image-card" type="button" data-lightbox="assets/images/agri-robot-solidworks.png" data-caption="农业机器人 SolidWorks Link / Joint 与坐标系设计"><img src="assets/images/agri-robot-solidworks.png" alt="农业机器人 SolidWorks Link / Joint 与坐标系设计" loading="lazy"><span class="vmcr-caption">农业机器人 SolidWorks Link / Joint 与坐标系设计</span></button>
+            <div class="vmcr-flow-arrow" role="img" aria-label="SolidWorks 模型导出为 URDF 模型"><span>➜</span></div>
+            <button class="image-card" type="button" data-lightbox="assets/images/agri-robot-urdf.png" data-caption="农业机器人 URDF 模型"><img src="assets/images/agri-robot-urdf.png" alt="农业机器人 URDF 模型" loading="lazy"><span class="vmcr-caption">农业机器人 URDF 模型检查</span></button>
+          </div>
+          <div class="module-contributions">
+            <h3>My Work</h3>
+            <ul><li><strong>独立构建农业机器人模型：</strong>在 SolidWorks 中完成整机模型的 Link 拆分与层级组织，按照运动学关系定义 Joint 类型、关节轴向及局部坐标系</li><li><strong>完成 URDF / Xacro 工程化：</strong>通过 sw_urdf_exporter 导出自主配置的机器人模型，重构为模块化 Xacro，并完成模型在 RViz 与 Gazebo 中的检查和集成</li><li><strong>搭建 ROS2 驱动控制层：</strong>配置 ros2_control 与 diff_drive_controller，将导航输出的 /cmd_vel 转换为四轮差速控制指令，打通算法到机器人执行层的链路</li><li><strong>补齐算法仿真验证环境：</strong>针对原始 VMCR 项目未提供配套仿真环境的问题，独立选择机器人与场景资源并搭建 Gazebo 农田场景</li><li><strong>完成 ROS2 迁移与闭环集成：</strong>重构 VMCR 的 ROS 通信及接口层，联通“RGB-D 感知 → VMCR 导航 → /cmd_vel → 差速底盘”并完成行间导航验证</li></ul>
+          </div>
+        </div>
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>SolidWorks Link / Joint 配置</li><li>URDF / Xacro</li><li>Gazebo + ros2_control</li></ol><ol class="project-flow"><li>RGB-D 无激光感知</li><li>VMCR ROS2 导航</li><li>/cmd_vel → 四轮差速底盘</li></ol></div>
+      </div>
+    </section>
+
+    <section class="section project-module" id="project-gnbv" aria-label="基于 Gradient-NBV 的 UR5 主动视觉系统迁移与服务化改造">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">04 / ACTIVE PERCEPTION</p>
+          <p class="module-cn">基于 Gradient-NBV 的 UR5 主动视觉系统迁移与服务化改造</p>
+          <p class="module-summary">基于开源 <a class="source-link" href="https://github.com/akshaykburusa/gradientnbv" target="_blank" rel="noopener noreferrer">Gradient-NBV</a> 进行二次开发，将原<strong>ABB + Gazebo 平台迁移至 UR5 + Isaac Sim</strong>，并将连续规划流程<strong>重构为按需触发的增量迭代服务</strong>，完成“观测 → NBV 规划 → MoveIt 执行 → 地图更新”的主动视觉闭环</p>
+          <div class="tags module-tags" aria-label="主动视觉平台迁移与服务化技术栈"><span>ROS / rospy</span><span>Isaac Sim</span><span>Action Graph</span><span>MoveIt</span><span>Gradient-NBV</span><span>Voxel Map</span></div>
+        </header>
+        <div class="module-body">
+          <figure class="module-demo">
+            <div class="lazy-video" style="--video-ratio:16/5">
+              <video aria-label="UR5 主动视角规划 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/gnbv1-demo-first-frame.jpg" data-src="assets/videos/gnbv1-demo.mp4" data-autoplay-in-view>
+                您的浏览器不支持 HTML5 视频
+              </video>
+              <button type="button" class="video-load" aria-label="加载并播放主动视觉平台迁移与服务化 Demo">▶ Watch Demo</button>
+            </div>
+          </figure>
+          <div class="module-contributions">
+            <h3>My Work</h3>
+            <ul><li><strong>迁移主动视觉平台：</strong>将 Gradient-NBV 原有 ABB + Gazebo 仿真平台迁移至 UR5 + Isaac Sim，完成机器人模型、相机与运动控制链路适配</li><li><strong>打通 Isaac Sim 与 ROS：</strong>基于 Action Graph 实现相机观测、机器人状态与运动控制数据交互</li><li><strong>重构 NBV 服务接口：</strong>将原连续循环流程改造为可指定迭代次数的 PlanNBV 服务，并接入 MoveIt 完成视角执行与体素地图增量更新</li><li><strong>增强规划过程可观测性：</strong>输出迭代次数、Loss、Gradient Norm、目标体素数量及重建覆盖率等指标，支持主动视觉流程调试与效果评估</li></ul>
+          </div>
+        </div>
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>观测 → PlanNBV 按需迭代</li><li>MoveIt → UR5 执行</li><li>新观测 → 体素地图增量更新</li></ol></div>
+      </div>
+    </section>
+
+    <section class="section project-module" id="project-tomato" aria-label="番茄植株枝叶关节化与风场仿真">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">05 / AGRICULTURAL PHYSICS SIMULATION</p>
+          <p class="module-cn">番茄植株枝叶关节化与风场仿真</p>
+          <p class="module-summary">在 Blender 中完成<strong>番茄植株枝叶逐级分离</strong>与连接处局部坐标系构建，将模型<strong>导出为 USD 资产并导入 Isaac Sim</strong>，配置 Spherical Joint 与 Wind Field，实现枝叶多部件独立、连续的风载动态响应</p>
+          <div class="tags module-tags" aria-label="番茄植株枝叶关节化与风场仿真技术栈"><span>Blender</span><span>Isaac Sim</span><span>USD</span><span>Local Frame</span><span>Spherical Joint</span><span>Wind Field</span><span>PhysX</span></div>
+        </header>
+
+        <div class="tomato-demo-list">
+          <article class="tomato-demo-item">
+            <header class="demo-description">
+              <span>01 · CORE WORKFLOW</span>
+              <h3>Blender-to-Isaac Plant Articulation</h3>
+              <p>在 Blender 中完成枝叶分离、模型层级整理与连接处局部坐标系设置，导出为 USD 资产并导入 Isaac Sim，再配置 Spherical Joint 与 Wind Field，打通从资产准备到风载动态效果的完整流程</p>
+            </header>
+            <figure class="module-demo">
+              <div class="lazy-video" style="--video-ratio:16/9">
+                <video aria-label="Blender 番茄植株枝叶分离与局部坐标系设置 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/tomato-blender-09119999-first-frame.jpg" data-src="assets/videos/tomato-blender-09119999.mp4" data-autoplay-in-view>您的浏览器不支持 HTML5 视频</video>
+                <button type="button" class="video-load" aria-label="加载并播放番茄植株枝叶分离与局部坐标系设置 Demo">▶ Watch Demo</button>
+              </div>
+            </figure>
+          </article>
+
+          <article class="tomato-demo-item">
+            <header class="demo-description">
+              <span>02 · SCENE INTEGRATION</span>
+              <h3>Isaac Sim Scene Validation</h3>
+              <p>在 UR5 作业场景中验证番茄植株资产的加载、层级与显示兼容性；同时展示 ROS / MoveIt 运动同步和相机图像链路</p>
+            </header>
+            <figure class="module-demo">
+              <div class="lazy-video" style="--video-ratio:8/5">
+                <video aria-label="Isaac Sim 番茄植株场景集成验证 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/tomato-isaac-moveit-first-frame.jpg" data-src="assets/videos/tomato-isaac-moveit.mp4" data-autoplay-in-view>您的浏览器不支持 HTML5 视频</video>
+                <button type="button" class="video-load" aria-label="加载并播放番茄植株场景集成验证 Demo">▶ Watch Demo</button>
+              </div>
+            </figure>
+          </article>
+        </div>
+
+        <div class="module-contributions tomato-contributions">
+          <h3>My Work</h3>
+          <ul><li><strong>完成枝叶分离与层级重构：</strong>在 Blender 中逐级分离番茄植株的枝条与叶片，建立适合关节化物理仿真的模型层级</li><li><strong>建立局部关节坐标系：</strong>在每个枝条—叶片连接处定义独立的关节原点与旋转参考，保证导入后的关节轴心和层级关系正确</li><li><strong>打通 USD 资产管线：</strong>将整理后的植株模型从 Blender 导出为 USD 并导入 Isaac Sim，完成模型层级与局部变换关系的场景适配</li><li><strong>配置球形关节：</strong>将连接处的 Local Frame 配置为 Spherical Joint，使枝叶部件具备独立的多轴转动能力</li><li><strong>联调风载动态响应：</strong>结合关节运动表现完成 Wind Field 参数调试，实现植株多部件连续摆动</li></ul>
+        </div>
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>Blender 枝叶分离</li><li>连接处局部坐标系</li><li>USD 资产导出</li></ol><ol class="project-flow"><li>USD → Isaac Sim</li><li>Local Frame → Spherical Joint</li><li>Wind Field → 动态响应</li></ol></div>
+      </div>
+    </section>
+
+    <section class="section project-module" id="project-cloth-pbd" aria-label="基于 PBD 粒子布料的作物叶片柔性仿真">
+      <div class="container">
+        <header class="module-heading">
+          <p class="module-category">06 / DEFORMABLE SIMULATION</p>
+          <p class="module-cn">基于 PBD 粒子布料的作物叶片柔性仿真</p>
+          <p class="module-summary">先在 Blender 中完成<strong>枝叶分离与叶片/叶柄网格细化</strong>，提高连接区域的顶点与粒子采样密度；导入 Isaac Sim 后配置为<strong>Particle Cloth</strong>，通过<strong>Physics Attachment</strong>增加有效约束粒子数量，再由<strong>Position Based Dynamics（PBD）</strong>求解连续柔性形变</p>
+          <div class="tags module-tags" aria-label="PBD 粒子布料叶片仿真技术栈"><span>Blender</span><span>Mesh Refinement</span><span>Isaac Sim</span><span>Particle Cloth</span><span>Physics Attachment</span><span>PBD</span><span>PhysX</span><span>Deformable Simulation</span></div>
+        </header>
+
+        <div class="module-body">
+          <figure class="module-demo">
+            <div class="lazy-video" style="--video-ratio:129/80">
+              <video aria-label="Isaac Sim PBD 粒子布料叶片柔性仿真 Demo" controls muted autoplay loop playsinline preload="none" poster="assets/images/plant-leaf-pbd-cloth-first-frame.jpg" data-src="assets/videos/plant-leaf-pbd-cloth.mp4" data-autoplay-in-view>您的浏览器不支持 HTML5 视频</video>
+              <button type="button" class="video-load" aria-label="加载并播放 PBD 粒子布料叶片柔性仿真 Demo">▶ Watch Demo</button>
+            </div>
+          </figure>
+
+          <div class="module-contributions">
+            <h3>My Work</h3>
+            <ul><li><strong>完成枝叶分离与层级重构：</strong>在 Blender 中分离植株的枝条、叶柄与叶片，建立适合刚柔耦合仿真的模型层级</li><li><strong>针对约束稳定性细化网格：</strong>重点提高叶片—叶柄连接区域的顶点密度，为生成更密集的布料粒子和 Attachment 约束点提供基础</li><li><strong>配置 Particle Cloth 与 Attachment：</strong>增加连接区域参与附着的有效粒子数量，增强柔性叶片与叶柄之间的约束稳定性</li><li><strong>实现 PBD 柔性形变：</strong>完成叶片弯曲、卷曲与动态恢复，并在完整作物场景中验证连续的柔性运动效果</li></ul>
+          </div>
+        </div>
+
+        <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>Blender 枝叶分离</li><li>叶片 / 叶柄网格细化</li><li>导入 Isaac Sim</li></ol><ol class="project-flow"><li>Leaf Mesh → Particle Cloth</li><li>高密度区域 → Physics Attachment</li><li>PBD 求解 → 连续柔性形变</li></ol></div>
+      </div>
+    </section>
+  </main>
+
+ 
+
+  <dialog class="lightbox" aria-label="图片预览">
+    <button class="lightbox-close" type="button" aria-label="关闭图片预览">×</button>
+    <img alt="项目图片预览">
+    <p></p>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
