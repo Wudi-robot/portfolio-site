@@ -213,7 +213,7 @@ button,a { -webkit-tap-highlight-color: transparent; }
 }
 /* Each source folder has its own demo, contributions, pipeline and code. */
 .hero { padding-bottom:0; }
-.project-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; padding-block:24px 0; }
+.project-index { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding-block:24px 0; }
 .project-index a { padding:12px; border:1px solid var(--line); border-radius:5px; transition:background .2s,border-color .2s; }
 .project-index a:hover { text-decoration:none; background:var(--soft); border-color:#c4a3e4; }
 .project-index span { display:block; font-size:10px; color:var(--muted); letter-spacing:.04em; }
