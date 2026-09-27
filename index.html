@@ -67,7 +67,7 @@
           </figure>
           <div class="module-contributions">
             <h3>My Work</h3>
-            <ul><li><strong>构建 Amodal 遮挡理解模块：</strong>基于 AISFormer 输出的 Amodal / Visible / Invisible Mask，结合 PCA 主轴归一化与纵向分段统计，判定无遮挡、顶部、中部、底部及组合遮挡状态</li><li><strong>实现目标关联与点云增量融合：</strong>使用 Hungarian 全局关联维护实例 ID，并结合 Mask 腐蚀、DBSCAN、中值深度筛选与 log-odds 更新抑制边缘噪声，持续累计新暴露区域点云</li><li><strong>设计交互位姿决策与执行：</strong>围绕遮挡区域生成候选气吹位姿，结合 MoveIt 碰撞感知 IK、OctoMap 与运动规划筛选可达姿态，并依据关节运动代价选择优先执行位姿</li><li><strong>打通实机视觉反馈闭环：</strong>集成 UR5、RealSense L515 与气吹执行机构，持续跟踪同一目标的遮挡状态，根据视觉反馈停止交互并完成关键区域暴露与三维信息补全</li></ul>
+            <ul><li><strong>构建 Amodal 遮挡理解模块：</strong>基于 AISFormer 输出的 Amodal / Visible / Invisible Mask，结合 PCA 主轴归一化与纵向分段统计，判定无遮挡、顶部、中部、底部及组合遮挡状态</li><li><strong>实现目标关联与点云增量融合：</strong>使用 Hungarian 全局关联维护实例 ID，并结合 Mask 腐蚀、DBSCAN、中值深度筛选与 log-odds 更新抑制边缘噪声，持续累计新暴露区域点云</li><li><strong>设计交互位姿决策与执行：</strong>围绕遮挡区域生成候选交互位姿，结合 MoveIt 碰撞感知 IK、OctoMap 与运动规划筛选可达姿态，并依据关节运动代价选择优先执行位姿</li><li><strong>打通实机视觉反馈闭环：</strong>集成 UR5、RealSense L515 与气吹执行机构，持续跟踪同一目标的遮挡状态，根据视觉反馈停止交互并完成关键区域暴露与三维信息补全</li></ul>
           </div>
         </div>
         <div class="module-pipeline"><h3>System Pipeline</h3><ol class="project-flow"><li>遮挡理解</li><li>交互决策</li><li>主动推叶</li></ol><ol class="project-flow"><li>视觉闭环判断</li><li>关键区域暴露</li><li>三维信息补全</li></ol></div>
