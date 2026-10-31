@@ -232,7 +232,9 @@ button,a { -webkit-tap-highlight-color: transparent; }
 .research-gallery { width:min(980px,100%); margin:0 auto; gap:16px; }
 .research-gallery .image-card { display:block; width:100%; text-align:center; }
 .research-gallery .image-card img { border:1px solid var(--line); background:#f4f4f5; }
-.research-gallery .image-card .research-caption { display:flex; width:100%; min-height:46px; margin:8px 0 0; align-items:center; justify-content:center; line-height:1.5; text-align:center; }
+.research-gallery .research-video-card { display:block; width:100%; min-width:0; }
+.research-gallery .research-gallery-video { width:100%; border:1px solid var(--line); background:#111318; }
+.research-gallery .research-caption { display:flex; width:100%; min-height:46px; margin:8px 0 0; align-items:center; justify-content:center; line-height:1.5; text-align:center; }
 .vmcr-gallery { width:min(980px,100%); margin:0 auto; grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr); gap:12px; align-items:center; }
 .vmcr-gallery .image-card { display:block; width:100%; text-align:center; }
 .vmcr-flow-arrow {
